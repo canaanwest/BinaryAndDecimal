@@ -1,9 +1,29 @@
+
 # 1. Write a method named `binary_to_decimal` that creates an array of size 8.
 #    Fill the array randomly with 0’s and 1’s. Print out the array so that it
 #    appears as a binary number. Calculate the decimal value for this binary
 #    number using the algorithm you devised in class. Print out the decimal value.
 def binary_to_decimal
-  puts "Not implemented"
+  binary = []
+  choose = [0, 1]
+
+  8.times do
+    binary.push(choose.sample)
+  end
+  binary_print = binary.join("")
+
+  puts "The binary array is: #{binary}\n"
+  puts "The binary number is: #{binary_print}\n"
+  puts "Its decimal value is: #{to_decimal(binary)}"
+end
+
+def to_decimal(binary)
+  binary.reverse!
+  total = 0
+  for i in 0..7 do
+    total += (2**i) * binary[i]
+  end
+  return total
 end
 
 # 2. Write a method named `array_equals` that accepts two integer arrays as
@@ -14,8 +34,18 @@ end
 #       compare individual elements with each other and
 #       you may retrieve the length of an array.
 def array_equals(array1, array2)
-  puts "Not implemented"
-  return true
+  if array1.length != array2.length
+    return false
+  else
+    i = 0
+    while i < array1.length
+      if array1[i] != array2[i]
+        return false
+      end
+      i += 1
+    end
+    return true
+  end
 end
 
 # --- END OF METHODS ---
